@@ -1,7 +1,7 @@
 <?php
-namespace GwopApigilityClient\Framework;
+namespace GwopApigilityClientTest\Framework;
 
-use Utils\Bootstrap;
+use GwopApigilityClientTest\Utils\Bootstrap;
 use PHPUnit_Framework_TestCase;
 use Zend\ServiceManager\ServiceManager;
 

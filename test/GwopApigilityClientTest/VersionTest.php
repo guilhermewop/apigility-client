@@ -7,6 +7,6 @@ class VersionTest extends TestCase
 {
     public function testWillRetriveVersionNumber()
     {
-        $this->assertEquals('1.3.0', \GwopApigilityClient\Version::getVersion());
+        $this->assertEquals('0.1.0', \GwopApigilityClient\Version::getVersion());
     }
 }

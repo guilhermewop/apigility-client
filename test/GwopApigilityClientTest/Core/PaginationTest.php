@@ -7,49 +7,89 @@ use GwopApigilityClient\Core\Pagination;
 
 class PaginationTest extends TestCase
 {
-    private $content;
+    /**
+     * @var \GwopApigilityClient\Core\Pagination
+     */
+    private $pagination;
 
     protected function setUp()
     {
-        $this->content = [
+        $links = [
             '_links' => [
                 'self' => [
-                    'href' => 'http://direct-api.local/v1/common/geolocation/state/16/city?page=1',
+                    'href' => 'http://api.local/v1/common/geolocation/state/16/city?page=1',
                 ],
                 'first' => [
-                    'href' => 'http://direct-api.local/v1/common/geolocation/state/16/city',
+                    'href' => 'http://api.local/v1/common/geolocation/state/16/city',
                 ],
                 'last' => [
-                    'href' => 'http://direct-api.local/v1/common/geolocation/state/16/city?page=6',
+                    'href' => 'http://api.local/v1/common/geolocation/state/16/city?page=6',
                 ],
                 'next' => [
-                    'href' => 'http://direct-api.local/v1/common/geolocation/state/16/city?page=2',
+                    'href' => 'http://api.local/v1/common/geolocation/state/16/city?page=2',
                 ],
             ],
         ];
+
+        $this->pagination = new Pagination($links);
     }
 
     protected function tearDown()
     {
-        $this->content = null;
+        $this->pagination = null;
     }
 
     public function testPaginationDataStructure()
     {
+        $links = $this->pagination->getLinks();
+
         // raiz
-        $this->assertArrayHasKey(Pagination::ROOT, $this->content);
+        $this->assertArrayHasKey(Pagination::ROOT, $links);
 
         // páginas
-        $this->assertArrayHasKey(Pagination::CURRENT, $this->content[Pagination::ROOT]);
-        $this->assertArrayHasKey(Pagination::FIRST, $this->content[Pagination::ROOT]);
-        $this->assertArrayHasKey(Pagination::LAST, $this->content[Pagination::ROOT]);
-        $this->assertArrayHasKey(Pagination::NEXT, $this->content[Pagination::ROOT]);
+        $this->assertArrayHasKey(Pagination::CURRENT, $links[Pagination::ROOT]);
+        $this->assertArrayHasKey(Pagination::FIRST, $links[Pagination::ROOT]);
+        $this->assertArrayHasKey(Pagination::LAST, $links[Pagination::ROOT]);
+        $this->assertArrayHasKey(Pagination::NEXT, $links[Pagination::ROOT]);
 
         // links
-        $this->assertArrayHasKey(Pagination::HREF, $this->content[Pagination::ROOT][Pagination::CURRENT]);
-        $this->assertArrayHasKey(Pagination::HREF, $this->content[Pagination::ROOT][Pagination::FIRST]);
-        $this->assertArrayHasKey(Pagination::HREF, $this->content[Pagination::ROOT][Pagination::LAST]);
-        $this->assertArrayHasKey(Pagination::HREF, $this->content[Pagination::ROOT][Pagination::NEXT]);
+        $this->assertArrayHasKey(Pagination::HREF, $links[Pagination::ROOT][Pagination::CURRENT]);
+        $this->assertArrayHasKey(Pagination::HREF, $links[Pagination::ROOT][Pagination::FIRST]);
+        $this->assertArrayHasKey(Pagination::HREF, $links[Pagination::ROOT][Pagination::LAST]);
+        $this->assertArrayHasKey(Pagination::HREF, $links[Pagination::ROOT][Pagination::NEXT]);
     }
+
+    public function testGetCurrentPageLink()
+    {
+        $this->assertEquals(
+            'http://api.local/v1/common/geolocation/state/16/city?page=1',
+            $this->pagination->getCurrentPageLink()
+        );
+    }
+
+    public function testGetFirstPageLink()
+    {
+        $this->assertEquals(
+            'http://api.local/v1/common/geolocation/state/16/city',
+            $this->pagination->getFirstPageLink()
+        );
+    }
+
+    public function testGetNextPageLink()
+    {
+        $this->assertEquals(
+            'http://api.local/v1/common/geolocation/state/16/city?page=2',
+            $this->pagination->getNextPageLink()
+        );
+    }
+
+    public function testGetLastPageLink()
+    {
+        $this->assertEquals(
+            'http://api.local/v1/common/geolocation/state/16/city?page=6',
+            $this->pagination->getLastPageLink()
+        );
+    }
+
 
 }

@@ -75,12 +75,6 @@ final class Links
             );
         }
 
-        if (! isset($input[self::ROOT][self::NEXT][self::HREF])) {
-            throw new Exception\RuntimeException(
-                'Não foi possível encontrar o link da próxima página'
-            );
-        }
-
         if (! isset($input[self::ROOT][self::LAST][self::HREF])) {
             throw new Exception\RuntimeException(
                 'Não foi possível encontrar o link da última página'
@@ -113,13 +107,17 @@ final class Links
     }
 
     /**
-     * Obtém o link da próxima página
+     * Obtém o link da próxima página (link opcional)
      *
-     * @return String
+     * @return String|Null
      */
     public function getNextPageLink()
     {
-        return $this->links[self::ROOT][self::NEXT][self::HREF];
+        if (isset($this->links[self::ROOT][self::NEXT][self::HREF])) {
+            return $this->links[self::ROOT][self::NEXT][self::HREF];
+        }
+
+        return;
     }
 
     /**

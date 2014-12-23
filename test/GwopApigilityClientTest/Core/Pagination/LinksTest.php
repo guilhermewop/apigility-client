@@ -84,16 +84,14 @@ class LinksTest extends TestCase
 
     /**
      * @dataProvider pageLinksProvider
-     * @expectedException GwopApigilityClient\Exception\RuntimeException
-     * @expectedExceptionMessage Não foi possível encontrar o link da próxima página
      */
-    public function testGetNextPageLinkThrowsRuntimeException($pages)
+    public function testGetNextPageLinkIsNull($pages)
     {
         unset($pages[CoreLinks::ROOT][CoreLinks::NEXT][CoreLinks::HREF]);
 
         $links = new CoreLinks($pages);
 
-        $this->assertNotEmpty($links->getNextPageLink());
+        $this->assertNull($links->getNextPageLink());
     }
 
     /**

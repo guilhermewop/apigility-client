@@ -1,5 +1,5 @@
 <?php
-namespace GwopApigilityClient\Core\Pagination;
+namespace GwopApigilityClient\Core;
 
 use GwopApigilityClient\Core\Pagination\Links;
 

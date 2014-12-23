@@ -1,9 +1,9 @@
 <?php
-namespace GwopApigilityClientTest\Core\Pagination;
+namespace GwopApigilityClientTest\Core;
 
 use GwopApigilityClientTest\Framework\TestCase;
 
-use GwopApigilityClient\Core\Pagination\Pagination as CorePagination,
+use GwopApigilityClient\Core\Pagination as CorePagination,
     GwopApigilityClient\Core\Pagination\Links as CoreLinks;
 
 class PaginationTest extends TestCase
@@ -23,7 +23,7 @@ class PaginationTest extends TestCase
      */
     public function testConstructor($pageInfo)
     {
-        $linksTest = new LinksTest;
+        $linksTest = new Pagination\LinksTest;
         $pages = $linksTest->pageLinksProvider();
         $pages = array_shift($pages);
         $pages = array_shift($pages);

@@ -3,6 +3,7 @@
     "type": "library",
     "description": "API Client for rest apis built with apigility",
     "homepage": "https://github.com/guilhermewop/apigility-client",
+    "license": "MIT",
     "keywords": [
         "apigility",
         "api",
@@ -28,7 +29,7 @@
     	"process-timeout": 5000
     },
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.3",
         "ext-json": "*",
         "ext-intl": "*",
         "ext-mbstring": "*",

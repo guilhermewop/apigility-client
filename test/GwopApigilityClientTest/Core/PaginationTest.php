@@ -42,11 +42,11 @@ class PaginationTest extends TestCase
 
     public function pageInfoProvider()
     {
-        return [[[
+        return array(array(array(
             'page_count'  => 6,
             'page_size'   => 200,
             'total_items' => 1170,
-        ]]];
+        )));
     }
 
 }

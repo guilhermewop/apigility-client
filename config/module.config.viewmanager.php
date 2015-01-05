@@ -1,6 +1,4 @@
 <?php
 namespace GwopApigilityClient;
 
-return [
-
-];
+return array();

@@ -1,5 +1,5 @@
 <?php
-return [
+return array(
     // routes
     'router'          => include 'module.config.routes.php',
     // services
@@ -11,5 +11,5 @@ return [
     // view helpers
     'view_helpers'    => include 'module.config.viewhelper.php',
     // apigility server
-    'api-server'       => include 'module.config.api-server.php',
-];
+    'api-server'      => include 'module.config.api-server.php',
+);

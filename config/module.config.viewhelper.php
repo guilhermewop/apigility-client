@@ -1,7 +1,6 @@
 <?php
 namespace GwopApigilityClient;
 
-return [
-    'invokables' => [
-    ],
-];
+return array(
+    'invokables' => array(),
+);

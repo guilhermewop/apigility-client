@@ -1,7 +1,8 @@
 {
     "name": "guilhermewop/apigility-client",
-    "description": "API Client for rest apis built with apigility",
     "type": "library",
+    "description": "API Client for rest apis built with apigility",
+    "homepage": "https://github.com/guilhermewop/apigility-client",
     "keywords": [
         "apigility",
         "api",
@@ -18,7 +19,6 @@
             "role": "Developer"
         }
     ],
-    "homepage": "https://github.com/guilhermewop/apigility-client",
     "support": {
         "email": "guilhermewop@gmail.com",
         "source": "https://github.com/guilhermewop/apigility-client",

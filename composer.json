@@ -1,0 +1,50 @@
+{
+    "name": "guilhermewop/apigility-client",
+    "type": "library",
+    "description": "API Client for rest apis built with apigility",
+    "homepage": "https://github.com/guilhermewop/apigility-client",
+    "keywords": [
+        "apigility",
+        "api",
+        "rest",
+        "sdk",
+        "client",
+        "zend-framework",
+        "zend module"
+    ],
+    "authors": [
+        {
+            "name": "Guilherme W. O. Pereira",
+            "email": "guilhermewop@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "guilhermewop@gmail.com",
+        "source": "https://github.com/guilhermewop/apigility-client",
+        "issues": "https://github.com/guilhermewop/apigility-client/issues"
+    },
+    "config": {
+    	"process-timeout": 5000
+    },
+    "require": {
+        "php": ">=5.4",
+        "ext-json": "*",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "zendframework/zendframework": ">=2.3,<3.0.0",
+        "league/fractal": "0.11.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.4.*",
+        "fabpot/php-cs-fixer": "0.4.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "GwopApigilityClient": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

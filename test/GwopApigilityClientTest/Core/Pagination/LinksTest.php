@@ -35,7 +35,7 @@ class LinksTest extends TestCase
     public function testOverrideSetLinksThrowsInvalidArgumentException($pages)
     {
         $links = new CoreLinks($pages);
-        $links->setLinks([]);
+        $links->setLinks(array());
     }
 
     /**
@@ -144,22 +144,22 @@ class LinksTest extends TestCase
 
     public function pageLinksProvider()
     {
-        return [[[
-            '_links' => [
-                'self' => [
+        return array(array(array(
+            '_links' => array(
+                'self' => array(
                     'href' => 'http://api.local/v1/common/geolocation/state/16/city?page=1',
-                ],
-                'first' => [
+                ),
+                'first' => array(
                     'href' => 'http://api.local/v1/common/geolocation/state/16/city',
-                ],
-                'last' => [
+                ),
+                'last' => array(
                     'href' => 'http://api.local/v1/common/geolocation/state/16/city?page=6',
-                ],
-                'next' => [
+                ),
+                'next' => array(
                     'href' => 'http://api.local/v1/common/geolocation/state/16/city?page=2',
-                ],
-            ],
-        ]]];
+                ),
+            ),
+        )));
     }
 
 }

@@ -1,22 +1,13 @@
-sudo:
-  false
-
-language:
-  php
+language: php
 
 php:
   - 5.3
   - 5.4
   - 5.5
-  - 5.6
-
-cache:
-  directories:
-  - vendor
 
 before_script:
-  - composer install --dev --no-interaction --prefer-source
-  - phpenv development
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
-  - vendor/bin/phpunit --configuration phpunit.xml test
+  - phpunit --configuration phpunit.xml test

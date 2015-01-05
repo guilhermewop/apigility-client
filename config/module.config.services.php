@@ -1,10 +1,10 @@
 <?php
 namespace GwopApigilityClient;
 
-return [
-    'aliases' => [
-    ],
-    'factories' => [
+return array(
+    'aliases' => array(
+    ),
+    'factories' => array(
          'gwop.api.http.client' => function ($sm) {
             $config = $sm->get('config');
             $apigilityServerConfig = $config['api-server'];
@@ -15,9 +15,9 @@ return [
 
             return $httpClient;
         }
-    ],
-    'invokables' => [
-    ],
-    'shared' => [
-    ],
-];
+    ),
+    'invokables' => array(
+    ),
+    'shared' => array(
+    ),
+);

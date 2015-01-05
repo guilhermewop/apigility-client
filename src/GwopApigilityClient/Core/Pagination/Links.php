@@ -38,7 +38,7 @@ final class Links
     /**
      * @var Array Lista com os links de paginação
      */
-    private $links = [];
+    private $links = array();
 
     /**
      * Constructor

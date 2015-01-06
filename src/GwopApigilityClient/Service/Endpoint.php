@@ -13,6 +13,12 @@ class Endpoint
      */
     private $version = 1;
 
+    public function __construct($path = null, $version = null)
+    {
+        $this->setPath($path)
+             ->setVersion($version);
+    }
+
     public function setVersion($input)
     {
         $input = (int) $input;

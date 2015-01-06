@@ -8,6 +8,14 @@ use GwopApigilityClient\Service\Endpoint;
 class EndpointTest extends TestCase
 {
 
+    public function testConstructor()
+    {
+        $endpoint = new Endpoint('/path', 2);
+
+        $this->assertEquals('/path', $endpoint->getPath());
+        $this->assertEquals(2, $endpoint->getVersion());
+    }
+
     public function testVersion()
     {
         $endpoint = $this->getServiceManager()->get('gwop.apigility.endpoint');
@@ -33,11 +41,11 @@ class EndpointTest extends TestCase
         $endpoint = $this->getServiceManager()->get('gwop.apigility.endpoint');
 
         // with slash
-        $endpoint->setPath('/endpoint');
-        $this->assertEquals('/endpoint', $endpoint->getPath());
+        $endpoint->setPath('/path');
+        $this->assertEquals('/path', $endpoint->getPath());
 
         // no slash
-        $endpoint->setPath('endpoint');
-        $this->assertEquals('/endpoint', $endpoint->getPath());
+        $endpoint->setPath('path');
+        $this->assertEquals('/path', $endpoint->getPath());
     }
 }

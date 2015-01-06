@@ -5,8 +5,10 @@
 
 ## Goals
 
-* version
-* pagination (links, page size, page count, total items)
-* embedded (content)
-* content type
-* validate headers (request and response)
+* Version
+* Links
+* Pagination (page size, page count, total items)
+* Embedded (content)
+* Content type
+* Validate headers (request and response)
+* Authentication (Inject a http client)

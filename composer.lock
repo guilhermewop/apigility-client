@@ -4,70 +4,55 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8fe546a0a2944cd2a8aea38fa96380b4",
+    "hash": "84e03d6f467ef9cf192ff5923ddfe6d6",
     "packages": [
         {
-            "name": "league/fractal",
-            "version": "0.11.0",
+            "name": "respect/validation",
+            "version": "0.6.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/fractal.git",
-                "reference": "5abf7b1ce12fea1e575355f76f4f58f15dba4be4"
+                "url": "https://github.com/Respect/Validation.git",
+                "reference": "4b9856c11f893954b7c822cbb5dfb75c468e7827"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/5abf7b1ce12fea1e575355f76f4f58f15dba4be4",
-                "reference": "5abf7b1ce12fea1e575355f76f4f58f15dba4be4",
+                "url": "https://api.github.com/repos/Respect/Validation/zipball/4b9856c11f893954b7c822cbb5dfb75c468e7827",
+                "reference": "4b9856c11f893954b7c822cbb5dfb75c468e7827",
                 "shasum": ""
             },
-            "require": {
-                "php": ">=5.3"
-            },
             "require-dev": {
-                "illuminate/pagination": "~4.1",
-                "mockery/mockery": "~0.9",
-                "pagerfanta/pagerfanta": "~1.0.0",
                 "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5",
-                "zendframework/zend-paginator": "~2.3"
+                "symfony/validator": "~2.1",
+                "zendframework/zend-validator": "~2.0"
             },
             "suggest": {
-                "illuminate/pagination": "The Illuminate Pagination component.",
-                "pagerfanta/pagerfanta": "Pagerfanta Paginator",
-                "zendframework/zend-paginator": "Zend Framework Paginator"
+                "ext-bcmath": "Arbitrary Precision Mathematics",
+                "ext-mbstring": "Multibyte String Functions"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.10-dev"
-                }
-            },
             "autoload": {
-                "psr-4": {
-                    "League\\Fractal\\": "src"
+                "psr-0": {
+                    "Respect\\Validation": "library/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "BSD Style"
             ],
             "authors": [
                 {
-                    "name": "Phil Sturgeon",
-                    "email": "me@philsturgeon.uk",
-                    "homepage": "http://philsturgeon.uk/",
-                    "role": "Developer"
+                    "name": "Respect/Validation Contributors",
+                    "homepage": "https://github.com/Respect/Validation/graphs/contributors"
                 }
             ],
-            "description": "Handle the output of complex data structures ready for JSON output.",
-            "homepage": "http://fractal.thephpleague.com/",
+            "description": "The most awesome validation engine ever created for PHP",
+            "homepage": "http://respect.li",
             "keywords": [
-                "api",
-                "json",
-                "league",
-                "rest"
+                "respect",
+                "validation",
+                "validator"
             ],
-            "time": "2014-12-10 16:59:07"
+            "time": "2014-07-11 06:35:17"
         },
         {
             "name": "zendframework/zendframework",

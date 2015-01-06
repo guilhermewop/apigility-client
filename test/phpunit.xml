@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./test/Bootstrap.php"
+<phpunit bootstrap="Bootstrap.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -9,12 +9,9 @@
          processIsolation="false"
          backupGlobals="false"
          syntaxCheck="true">
-    <testsuite name="Apigility Rest Client Module Test Suite">
-        <directory>./test</directory>
-    </testsuite>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
+            <directory suffix=".php">../src/</directory>
         </whitelist>
     </filter>
 </phpunit>

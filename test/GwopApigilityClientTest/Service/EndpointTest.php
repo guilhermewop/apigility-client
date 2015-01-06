@@ -7,13 +7,37 @@ use GwopApigilityClient\Service\Endpoint;
 
 class EndpointTest extends TestCase
 {
+    private $client;
+
+    protected function setUp()
+    {
+        $zendHttpClient = $this->getMock('Zend\Http\Client');
+
+        $this->client = $this->getMock('GwopApigilityClient\Http\Client');
+
+        $this->client->expects($this->any())
+                     ->method('getZendHttpClient')
+                     ->will($this->returnValue($zendHttpClient));
+    }
+
+    protected function tearDown()
+    {
+        $this->client = null;
+    }
 
     public function testConstructor()
     {
-        $endpoint = new Endpoint('/path', 2);
+        $endpoint = new Endpoint('/path', 2, $this->client);
 
         $this->assertEquals('/path', $endpoint->getPath());
         $this->assertEquals(2, $endpoint->getVersion());
+    }
+
+    public function testToString()
+    {
+        $endpoint = new Endpoint('/path', 2, $this->client);
+
+        $this->assertEquals('/v2/path', $endpoint);
     }
 
     public function testVersion()

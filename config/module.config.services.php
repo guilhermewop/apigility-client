@@ -10,8 +10,19 @@ return array(
             $config = $sm->get('config');
             $apiServerConfig = $config['api-server'];
 
+            $zendHttpClient = new \Zend\Http\Client();
+            $zendHttpClient->getUri()->setHost($apiServerConfig['host']);
+
+
+            $client = new Http\Client($zendHttpClient);
+
             $service = new Service\Endpoint;
-            $service->setVersion($apiServerConfig['default_version']);
+
+            $service->setClient($client);
+
+            if (isset($apiServerConfig['default_version'])) {
+                $service->setVersion($apiServerConfig['default_version']);
+            }
 
             return $service;
         }

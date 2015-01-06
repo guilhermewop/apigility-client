@@ -1,22 +1,44 @@
 <?php
 namespace GwopApigilityClient\Service;
 
-class Endpoint
+use GwopApigilityClient\Http\Client;
+
+class Endpoint implements EndpointInterface
 {
     /**
      * @var String Path
      */
-    private $path;
+    private $path = '/';
 
     /**
      * @var String Version
      */
     private $version = 1;
 
-    public function __construct($path = null, $version = null)
+    /**
+     * @var GwopApigilityClient\Http\Client
+     */
+    private $client;
+
+    public function __construct($path = null, $version = null, Client $client = null)
     {
+        $client = ($client instanceof Client) ? $client : new Client();
+
         $this->setPath($path)
-             ->setVersion($version);
+             ->setVersion($version)
+             ->setClient($client);
+    }
+
+    public function setClient(Client $input)
+    {
+        $this->client = $input;
+
+        return $this;
+    }
+
+    public function getClient()
+    {
+        return $this->client;
     }
 
     public function setVersion($input)
@@ -54,9 +76,22 @@ class Endpoint
         return $this->path;
     }
 
+    public function get($path = null, $version = null, array $params = array(), array $headers = array())
+    {
+        if (! is_null($path)) {
+            $this->setPath($path);
+        }
+
+        if (! is_null($version)) {
+            $this->setVersion($version);
+        }
+
+        return $this->getClient()->doRequest('GET', $this->getPath(), $this->getVersion(), $params, $headers);
+    }
+
     public function __toString()
     {
-        echo sprintf("%s/%s", $this->version, $this->path);
+        return sprintf("/v%s%s", $this->version, $this->path);
     }
 
 }

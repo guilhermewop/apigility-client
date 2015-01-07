@@ -8,6 +8,11 @@ php:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
+  - phpenv rehash
 
 script:
-  - phpunit --configuration test/phpunit.xml test/
+  - phpunit --configuration test/phpunit.xml --coverage-clover=coverage.clover test/
+  
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover

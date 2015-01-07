@@ -11,5 +11,5 @@ interface EndpointInterface
 
     public function getPath();
 
-    public function get($path = null, $version = null, array $params = array(), array $headers = array());
+    public function get($path = null, $version = null, array $params = array());
 }

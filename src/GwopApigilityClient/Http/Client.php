@@ -58,9 +58,8 @@ class Client
     * @param GwopApigilityClient\Service\Endpoint $endpoint
     * @param String $method HTTP Verb
     * @param Array $params
-    * @param Array $headers
     */
-    protected function doRequest(Endpoint $endpoint, $method = 'GET', array $params = array(), array $headers = array())
+    protected function doRequest(Endpoint $endpoint, $method = 'GET', array $params = array())
     {
         $host = $this->httpClient->getUri()->getHost();
 

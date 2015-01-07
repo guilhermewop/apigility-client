@@ -76,7 +76,7 @@ class Endpoint implements EndpointInterface
         return $this->path;
     }
 
-    public function get($path = null, $version = null, array $params = array(), array $headers = array())
+    public function get($path = null, $version = null, array $params = array())
     {
         if (! is_null($path)) {
             $this->setPath($path);
@@ -86,7 +86,7 @@ class Endpoint implements EndpointInterface
             $this->setVersion($version);
         }
 
-        return $this->getClient()->doRequest($this, 'GET', $params, $headers);
+        return $this->getClient()->doRequest($this, 'GET', $params);
     }
 
     public function __toString()

@@ -13,12 +13,8 @@ return array(
             $zendHttpClient = new \Zend\Http\Client();
             $zendHttpClient->getUri()->setHost($apiServerConfig['host']);
 
-
-            $client = new Http\Client($zendHttpClient);
-
             $service = new Service\Endpoint;
-
-            $service->setClient($client);
+            $service->setClient(new Http\Client($zendHttpClient));
 
             if (isset($apiServerConfig['default_version'])) {
                 $service->setVersion($apiServerConfig['default_version']);
@@ -30,5 +26,6 @@ return array(
     'invokables' => array(
     ),
     'shared' => array(
+        'gwop.apigility.endpoint' => false,
     ),
 );

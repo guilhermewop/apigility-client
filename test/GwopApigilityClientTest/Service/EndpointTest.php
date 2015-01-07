@@ -3,7 +3,8 @@ namespace GwopApigilityClientTest\Service;
 
 use GwopApigilityClientTest\Framework\TestCase;
 
-use GwopApigilityClient\Service\Endpoint;
+use GwopApigilityClient\Service\Endpoint,
+    GwopApigilityClient\Http\Client;
 
 class EndpointTest extends TestCase
 {
@@ -71,5 +72,12 @@ class EndpointTest extends TestCase
         // no slash
         $endpoint->setPath('path');
         $this->assertEquals('/path', $endpoint->getPath());
+    }
+
+    public function testGetClient()
+    {
+        $endpoint = $this->getServiceManager()->get('gwop.apigility.endpoint');
+
+        $this->assertInstanceOf('GwopApigilityClient\Http\Client', $endpoint->getClient());
     }
 }

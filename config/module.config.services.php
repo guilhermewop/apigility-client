@@ -10,7 +10,7 @@ return array(
             $config = $sm->get('config');
             $apiServerConfig = $config['api-server'];
 
-            $zendHttpClient = new \Zend\Http\Client();
+            $zendHttpClient = new \Zend\Http\Client;
             $zendHttpClient->getUri()->setHost($apiServerConfig['host']);
 
             $service = new Service\Endpoint;

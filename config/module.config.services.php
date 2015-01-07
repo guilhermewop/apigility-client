@@ -3,17 +3,28 @@ namespace GwopApigilityClient;
 
 return array(
     'aliases' => array(
+        'GwopApigilityClient\Service\Endpoint' => 'gwop.apigility.endpoint',
     ),
     'factories' => array(
-         'gwop.api.http.client' => function ($sm) {
+        'gwop.apigility.endpoint' => function ($sm) {
             $config = $sm->get('config');
-            $apigilityServerConfig = $config['api-server'];
+            $apiServerConfig = $config['api-server'];
 
-            $httpClient = new \Zend\Http\Client();
-            $host = "{$apigilityServerConfig['host']}/{$apigilityServerConfig['version']}";
-            $httpClient->getUri()->setHost($host);
+            $zendHttpClient = new \Zend\Http\Client();
+            $zendHttpClient->getUri()->setHost($apiServerConfig['host']);
 
-            return $httpClient;
+
+            $client = new Http\Client($zendHttpClient);
+
+            $service = new Service\Endpoint;
+
+            $service->setClient($client);
+
+            if (isset($apiServerConfig['default_version'])) {
+                $service->setVersion($apiServerConfig['default_version']);
+            }
+
+            return $service;
         }
     ),
     'invokables' => array(

@@ -86,7 +86,7 @@ class Endpoint implements EndpointInterface
             $this->setVersion($version);
         }
 
-        return $this->getClient()->doRequest('GET', $this->getPath(), $this->getVersion(), $params, $headers);
+        return $this->getClient()->doRequest($this, 'GET', $params, $headers);
     }
 
     public function __toString()

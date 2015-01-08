@@ -1,4 +1,4 @@
-# Client for Apigility Rest API
+# Zend Framework 2 Module Client for Apigility Restful API
 
 [![Build Status](https://travis-ci.org/guilhermewop/apigility-client.svg?branch=travis-support)](https://travis-ci.org/guilhermewop/apigility-client)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guilhermewop/apigility-client/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/guilhermewop/apigility-client/?branch=develop)
@@ -7,10 +7,18 @@
 
 ## Goals
 
-* Version
-* Links
-* Pagination (page size, page count, total items)
-* Embedded (content)
-* Content type
-* Validate headers (request and response)
-* Authentication (Inject a http client)
+* Endpoint/Resource
+ * Version
+ * Links (self, first, next, last, etc)
+ * Pagination (page size, page count, total items)
+ * Embedded (main content, children resources)
+
+
+* Http Client
+ * Authentication (Injecting a http client)
+ * Validate headers (Content type request/response)
+
+
+* Formats
+ * Hal+json
+ * Json

@@ -25,13 +25,14 @@
         "issues": "https://github.com/guilhermewop/apigility-client/issues"
     },
     "config": {
-    	"process-timeout": 5000
+        "process-timeout": 5000
     },
     "require": {
         "php": ">=5.3",
         "ext-json": "*",
         "ext-mbstring": "*",
         "zendframework/zendframework": ">=2.3,<3.0.0",
+        "level3/resource": "0.0.1",
         "respect/validation": "0.6.*"
     },
     "require-dev": {

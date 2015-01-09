@@ -5,6 +5,23 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/guilhermewop/apigility-client/badges/coverage.png?b=develop)](https://scrutinizer-ci.com/g/guilhermewop/apigility-client/?branch=develop)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
+ApigilityClient is a lightweight library to consume Restful APIs built with [Apigility](http://apigility.org).
+
+## Requirements
+
+* PHP 5.4.x
+* Zend Framework >= 2.3
+* level3/resource = 0.0.1
+
+## Installation
+### Using composer (recommended)
+
+```bash
+php composer.phar require guilhermewop/apigility-client:dev-master
+```
+
+[Package information on Packagist](https://packagist.org/packages/guilhermewop/apigility-client)
+
 ## Goals
 
 * Endpoint/Resource

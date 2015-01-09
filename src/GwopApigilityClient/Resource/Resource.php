@@ -1,24 +1,26 @@
 <?php
 namespace GwopApigilityClient\Resource;
 
+use Level3\Resource\Resource as Level3Resource;
+
 class Resource
 {
 
     private $data;
     private $pagination;
 
-    public function __construct(array $data = null)
+    public function __construct(Level3Resource $data = null)
     {
         if (! empty($data)) {
             $this->setData($data);
         }
     }
 
-    public function setData(array $input)
+    public function setData(Level3Resource $input)
     {
         $this->data = $input;
 
-        $this->setPagination(new Pagination($this->data));
+        $this->setPagination(new Pagination($this->data->getData()));
 
         return $this;
     }

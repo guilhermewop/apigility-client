@@ -11,6 +11,9 @@ use GwopApigilityClientTest\Utils\FileLoader;
 use GwopApigilityClient\Resource\Pagination,
     GwopApigilityClient\Resource\Resource;
 
+use Level3\Resource\Resource as Level3Resource;
+use Level3\Resource\Format\Reader\HAL\JsonReader as HalJson;
+
 class ResourceTest extends TestCase
 {
     private $resource;
@@ -20,9 +23,11 @@ class ResourceTest extends TestCase
     {
         $file = FileLoader::loadFile();
 
-        $this->data = JsonDecoder::decode(file_get_contents($file), Json::TYPE_ARRAY);
+        $this->data = (string) trim(file_get_contents($file));
 
-        $this->resource = new Resource($this->data);
+        $halJson = new HalJson;
+
+        $this->resource = new Resource($halJson->execute($this->data));
     }
 
     protected function tearDown()
@@ -32,13 +37,12 @@ class ResourceTest extends TestCase
 
     public function testGetData()
     {
-        $this->assertEquals($this->data, $this->resource->getData());
+        $this->assertInstanceOf('Level3\Resource\Resource', $this->resource->getData());
     }
 
     public function testGetPagination()
     {
         $this->assertInstanceOf('GwopApigilityClient\Resource\Pagination', $this->resource->getPagination());
     }
-
 
 }

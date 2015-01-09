@@ -15,17 +15,13 @@ final class Pagination
     public function __construct(array $data = null)
     {
         if (! empty($data)) {
-            try {
-                $pageSize   = (int) $data[self::KEY_PAGE_SIZE];
-                $pageCount  = (int) $data[self::KEY_PAGE_COUNT];
-                $totalItems = (int) $data[self::KEY_TOTAL_ITEMS];
+            $pageSize   = (int) $data[self::KEY_PAGE_SIZE];
+            $pageCount  = (int) $data[self::KEY_PAGE_COUNT];
+            $totalItems = (int) $data[self::KEY_TOTAL_ITEMS];
 
-                $this->setPageSize($pageSize)
-                     ->setPageCount($pageCount)
-                     ->setTotalItems($totalItems);
-            } catch (\Exception $e) {
-                die($e->getMessage());
-            }
+            $this->setPageSize($pageSize)
+                 ->setPageCount($pageCount)
+                 ->setTotalItems($totalItems);
         }
     }
 
@@ -67,4 +63,5 @@ final class Pagination
     {
         return $this->totalItems;
     }
+
 }

@@ -6,28 +6,28 @@ use Level3\Resource\Resource as Level3Resource;
 class Resource
 {
 
-    private $data;
+    private $resource;
     private $pagination;
 
-    public function __construct(Level3Resource $data = null)
+    public function __construct(Level3Resource $resource = null)
     {
-        if (! empty($data)) {
-            $this->setData($data);
+        if (! empty($resource)) {
+            $this->setResource($resource);
         }
     }
 
-    public function setData(Level3Resource $input)
+    public function setResource(Level3Resource $input)
     {
-        $this->data = $input;
+        $this->resource = $input;
 
-        $this->setPagination(new Pagination($this->data->getData()));
+        $this->setPagination(new Pagination($this->resource->getData()));
 
         return $this;
     }
 
-    public function getData()
+    public function getResource()
     {
-        return $this->data;
+        return $this->resource;
     }
 
     private function setPagination(Pagination $input)
@@ -40,6 +40,11 @@ class Resource
     public function getPagination()
     {
         return $this->pagination;
+    }
+
+    public function getLinks()
+    {
+        return new Links($this->resource->getAllLinks());
     }
 
 }

@@ -1,4 +1,4 @@
-# Zend Framework 2 Module Client for Apigility Restful API
+# Client for Apigility Restful API
 
 [![Build Status](https://travis-ci.org/guilhermewop/apigility-client.svg?branch=travis-support)](https://travis-ci.org/guilhermewop/apigility-client)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/guilhermewop/apigility-client/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/guilhermewop/apigility-client/?branch=develop)

@@ -1,16 +1,15 @@
 {
     "name": "guilhermewop/apigility-client",
     "type": "library",
-    "description": "API Client for rest apis built with apigility",
+    "description": "Zend Framework 2 Module API Client for Restful APIs built with apigility",
     "homepage": "https://github.com/guilhermewop/apigility-client",
     "license": "MIT",
     "keywords": [
         "apigility",
         "api",
         "rest",
-        "sdk",
         "client",
-        "zend-framework",
+        "zend framework 2",
         "zend module"
     ],
     "authors": [
@@ -26,14 +25,14 @@
         "issues": "https://github.com/guilhermewop/apigility-client/issues"
     },
     "config": {
-    	"process-timeout": 5000
+        "process-timeout": 5000
     },
     "require": {
-        "php": ">=5.3",
+        "php": ">=5.4",
         "ext-json": "*",
-        "ext-intl": "*",
         "ext-mbstring": "*",
         "zendframework/zendframework": ">=2.3,<3.0.0",
+        "level3/resource": "0.0.1",
         "respect/validation": "0.6.*"
     },
     "require-dev": {

@@ -9,14 +9,25 @@
 
 * Endpoint/Resource
  * Version
- * Links (self, first, next, last, etc)
- * Pagination (page size, page count, total items)
- * Embedded (main content, children resources)  
+ * Links (self, first, next, last, etc) (:heavy_check_mark:)
+ * Pagination (page size, page count, total items) (:heavy_check_mark:)
+ * Embedded (main content, children resources) (:heavy_check_mark:)
  * Formats  
-    * Hal+json
+    * Hal+json (:heavy_check_mark:)
      * Json
+ * Requests  
+    * fetch
+    * insert
+    * update
+    * delete
 
 
 * Http Client
  * Authentication (Injecting a http client)
  * Validate headers (Content type request/response)
+ * Methods  
+    * GET
+    * POST
+    * PUT
+    * PATCH
+    * DELETE

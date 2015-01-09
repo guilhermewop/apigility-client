@@ -11,7 +11,7 @@
  * Version
  * Links (self, first, next, last, etc) (:heavy_check_mark:)
  * Pagination (page size, page count, total items) (:heavy_check_mark:)
- * Embedded (main content, children resources)  
+ * Embedded (main content, children resources) (:heavy_check_mark:)
  * Formats  
     * Hal+json (:heavy_check_mark:)
      * Json

@@ -9,6 +9,8 @@ class Resource
     private $resource;
     private $pagination;
 
+    const DEFAULT_KEY_EMBEDDED_CONTENT = 'content';
+
     public function __construct(Level3Resource $resource = null)
     {
         if (! empty($resource)) {
@@ -45,6 +47,11 @@ class Resource
     public function getLinks()
     {
         return new Links($this->resource->getAllLinks());
+    }
+
+    public function getContent($key = self::DEFAULT_KEY_EMBEDDED_CONTENT)
+    {
+        return $this->resource->getResources($key);
     }
 
 }

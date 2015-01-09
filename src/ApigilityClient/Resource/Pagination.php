@@ -1,12 +1,12 @@
 <?php
-namespace GwopApigilityClient\Resource;
+namespace ApigilityClient\Resource;
 
 final class Pagination
 {
 
-    const KEY_PAGE_SIZE   = 'page_size';
-    const KEY_PAGE_COUNT  = 'page_count';
-    const KEY_TOTAL_ITEMS = 'total_items';
+    const PAGE_SIZE   = 'page_size';
+    const PAGE_COUNT  = 'page_count';
+    const TOTAL_ITEMS = 'total_items';
 
     private $pageSize;
     private $pageCount;
@@ -15,9 +15,9 @@ final class Pagination
     public function __construct(array $data = null)
     {
         if (! empty($data)) {
-            $pageSize   = (int) $data[self::KEY_PAGE_SIZE];
-            $pageCount  = (int) $data[self::KEY_PAGE_COUNT];
-            $totalItems = (int) $data[self::KEY_TOTAL_ITEMS];
+            $pageSize   = (int) $data[self::PAGE_SIZE];
+            $pageCount  = (int) $data[self::PAGE_COUNT];
+            $totalItems = (int) $data[self::TOTAL_ITEMS];
 
             $this->setPageSize($pageSize)
                  ->setPageCount($pageCount)

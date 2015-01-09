@@ -1,14 +1,16 @@
 <?php
-namespace GwopApigilityClient;
+namespace ApigilityClient;
 
 class Version
 {
 
-    /** @var string */
+    /**
+     * @var String
+     */
     const VERSION = '0.1.0-rc1';
 
     /**
-     * Obtém o número da versão atual do Client
+     * Get current version
      *
      * @return string
      */

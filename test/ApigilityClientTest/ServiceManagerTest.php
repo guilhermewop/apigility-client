@@ -1,7 +1,7 @@
 <?php
-namespace GwopApigilityClientTest;
+namespace ApigilityClientTest;
 
-use GwopApigilityClientTest\Framework\TestCase;
+use ApigilityClientTest\Framework\TestCase;
 
 class ServiceManagerTest extends TestCase
 {

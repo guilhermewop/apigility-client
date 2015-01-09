@@ -1,5 +1,5 @@
 <?php
-namespace GwopApigilityClient\Exception;
+namespace ApigilityClient\Exception;
 
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {

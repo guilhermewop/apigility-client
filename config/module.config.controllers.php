@@ -1,5 +1,5 @@
 <?php
-namespace GwopApigilityClient;
+namespace ApigilityClient;
 
 return array(
     'invokables' => array(),

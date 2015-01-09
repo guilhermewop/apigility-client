@@ -1,9 +1,9 @@
 <?php
-namespace GwopApigilityClientTest\Resource;
+namespace ApigilityClientTest\Resource;
 
-use GwopApigilityClientTest\Framework\TestCase;
+use ApigilityClientTest\Framework\TestCase;
 
-use GwopApigilityClient\Resource\Pagination;
+use ApigilityClient\Resource\Pagination;
 
 class PaginationTest extends TestCase
 {

@@ -1,7 +1,7 @@
 <?php
-namespace GwopApigilityClient;
+namespace ApigilityClient;
 
 return array(
-    'host'            => 'http://apigility-server.local',
+    'host'            => 'http://api.local',
     'default_version' => 1,
 );

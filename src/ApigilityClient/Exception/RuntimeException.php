@@ -1,5 +1,5 @@
 <?php
-namespace GwopApigilityClient\Exception;
+namespace ApigilityClient\Exception;
 
 class RuntimeException extends \Exception implements ExceptionInterface
 {

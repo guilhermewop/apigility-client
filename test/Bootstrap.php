@@ -1,13 +1,13 @@
 <?php
-namespace GwopApigilityClientTest;
+namespace ApigilityClientTest;
 
-use GwopApigilityClientTest\Utils\Bootstrap;
+use ApigilityClientTest\Utils\Bootstrap;
 
 // enable all error reporting
 error_reporting(E_ALL | E_STRICT);
 
 // require Bootstrap class
-require __DIR__.'/GwopApigilityClientTest/Utils/Bootstrap.php';
+require __DIR__.'/ApigilityClientTest/Utils/Bootstrap.php';
 
 // init Boostrap class
 Bootstrap::init();

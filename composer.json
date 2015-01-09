@@ -1,7 +1,7 @@
 {
     "name": "guilhermewop/apigility-client",
     "type": "library",
-    "description": "Zend Framework 2 Module API Client for Restful APIs built with apigility",
+    "description": "API Client for Restful APIs built with apigility",
     "homepage": "https://github.com/guilhermewop/apigility-client",
     "license": "MIT",
     "keywords": [
@@ -41,7 +41,7 @@
     },
     "autoload": {
         "psr-0": {
-            "GwopApigilityClient": "src/"
+            "ApigilityClient": "src/"
         },
         "classmap": [
             "./Module.php"

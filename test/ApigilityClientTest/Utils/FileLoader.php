@@ -1,5 +1,5 @@
 <?php
-namespace GwopApigilityClientTest\Utils;
+namespace ApigilityClientTest\Utils;
 
 class FileLoader
 {

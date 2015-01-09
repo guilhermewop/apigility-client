@@ -11,14 +11,12 @@
  * Version
  * Links (self, first, next, last, etc)
  * Pagination (page size, page count, total items)
- * Embedded (main content, children resources)
+ * Embedded (main content, children resources)  
+ * Formats
+   * Hal+json
+   * Json
 
 
 * Http Client
  * Authentication (Injecting a http client)
  * Validate headers (Content type request/response)
-
-
-* Formats
- * Hal+json
- * Json

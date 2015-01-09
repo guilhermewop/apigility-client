@@ -12,9 +12,9 @@
  * Links (self, first, next, last, etc)
  * Pagination (page size, page count, total items)
  * Embedded (main content, children resources)  
- * Formats
-   * Hal+json
-   * Json
+ * Formats  
+    * Hal+json
+     * Json
 
 
 * Http Client

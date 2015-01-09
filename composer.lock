@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2c6fac3fbeb0cb45614c558c7f2a1860",
+    "hash": "439ef51184ab6d251567fb7680b598d0",
     "packages": [
         {
             "name": "hampel/json",
@@ -1315,7 +1315,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3",
+        "php": ">=5.4",
         "ext-json": "*",
         "ext-mbstring": "*"
     },

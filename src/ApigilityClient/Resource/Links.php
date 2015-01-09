@@ -1,5 +1,5 @@
 <?php
-namespace GwopApigilityClient\Resource;
+namespace ApigilityClient\Resource;
 
 use Level3\Resource\Link as Level3Links;
 

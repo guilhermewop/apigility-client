@@ -1,8 +1,8 @@
 <?php
-namespace GwopApigilityClientTest;
+namespace ApigilityClientTest;
 
-use GwopApigilityClientTest\Framework\TestCase;
-use GwopApigilityClient\Module;
+use ApigilityClientTest\Framework\TestCase;
+use ApigilityClient\Module;
 use Traversable;
 
 class ModuleTest extends TestCase

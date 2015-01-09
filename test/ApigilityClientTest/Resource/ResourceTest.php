@@ -1,19 +1,18 @@
 <?php
-namespace GwopApigilityClientTest\Resource;
-
-use GwopApigilityClientTest\Framework\TestCase;
+namespace ApigilityClientTest\Resource;
 
 use Zend\Json\Decoder as JsonDecoder,
     Zend\Json\Json;
 
-use GwopApigilityClientTest\Utils\FileLoader;
+use ApigilityClientTest\Framework\TestCase,
+    ApigilityClientTest\Utils\FileLoader;
 
-use GwopApigilityClient\Resource\Pagination,
-    GwopApigilityClient\Resource\Resource,
-    GwopApigilityClient\Resource\Links;
+use ApigilityClient\Resource\Pagination,
+    ApigilityClient\Resource\Resource,
+    ApigilityClient\Resource\Links;
 
-use Level3\Resource\Resource as Level3Resource;
-use Level3\Resource\Format\Reader\HAL\JsonReader as HalJson;
+use Level3\Resource\Resource as Level3Resource,
+    Level3\Resource\Format\Reader\HAL\JsonReader as HalJson;
 
 class ResourceTest extends TestCase
 {
@@ -43,14 +42,14 @@ class ResourceTest extends TestCase
 
     public function testGetPagination()
     {
-        $this->assertInstanceOf('GwopApigilityClient\Resource\Pagination', $this->resource->getPagination());
+        $this->assertInstanceOf('ApigilityClient\Resource\Pagination', $this->resource->getPagination());
     }
 
     public function testGetLinks()
     {
         $links = $this->resource->getLinks();
 
-        $this->assertInstanceOf('GwopApigilityClient\Resource\Links', $links);
+        $this->assertInstanceOf('ApigilityClient\Resource\Links', $links);
     }
 
     public function testGetContent()

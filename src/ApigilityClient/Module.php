@@ -1,5 +1,5 @@
 <?php
-namespace GwopApigilityClient;
+namespace ApigilityClient;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface,
     Zend\ModuleManager\Feature\LocatorRegisteredInterface,

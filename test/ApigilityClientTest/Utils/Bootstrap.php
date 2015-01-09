@@ -1,5 +1,5 @@
 <?php
-namespace GwopApigilityClientTest\Utils;
+namespace ApigilityClientTest\Utils;
 
 use Zend\Mvc\Service\ServiceManagerConfig,
     Zend\ServiceManager\ServiceManager,
@@ -83,7 +83,7 @@ class Bootstrap
         $loader = include $vendorPath.'/autoload.php';
 
         // add this suite test to loader
-        $loader->add('GwopApigilityClientTest', dirname(dirname(__DIR__)));
+        $loader->add('ApigilityClientTest', dirname(dirname(__DIR__)));
     }
 
     /**

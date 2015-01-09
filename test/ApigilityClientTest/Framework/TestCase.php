@@ -1,9 +1,11 @@
 <?php
-namespace GwopApigilityClientTest\Framework;
+namespace ApigilityClientTest\Framework;
 
-use GwopApigilityClientTest\Utils\Bootstrap;
-use PHPUnit_Framework_TestCase;
 use Zend\ServiceManager\ServiceManager;
+
+use PHPUnit_Framework_TestCase;
+
+use ApigilityClientTest\Utils\Bootstrap;
 
 class TestCase extends PHPUnit_Framework_TestCase
 {

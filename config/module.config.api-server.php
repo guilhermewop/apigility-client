@@ -2,6 +2,6 @@
 namespace ApigilityClient;
 
 return array(
-    'host'            => 'http://api.local',
+    'host'            => 'http://localhost:8888',
     'default_version' => 1,
 );

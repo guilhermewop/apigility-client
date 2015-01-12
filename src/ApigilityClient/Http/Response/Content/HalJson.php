@@ -5,7 +5,8 @@ use Zend\Json\Json,
     Zend\Http\Response as HttpResponse,
     Zend\Http\Client as HttpClient;
 
-use ApiClient\Core\Response\TriggerException;
+use ApiClient\Core\Response\TriggerException,
+    ApigilityClient\Resource\Resource;
 
 use Level3\Resource\Format\Reader\HAL\JsonReader;
 

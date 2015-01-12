@@ -11,6 +11,9 @@ final class Links
     const CURRENT_PAGE = 'self';
     const LAST_PAGE    = 'last';
 
+    /**
+     * @var Array of Level3\Resource\Link
+     */
     private $links = array();
 
     public function __construct(array $links)
@@ -18,9 +21,13 @@ final class Links
         $this->links = $links;
     }
 
-    public function getLinkPage($rel = self::CURRENT_PAGE)
+    public function getPageLink($rel = self::CURRENT_PAGE)
     {
-        return $this->links[$rel]['href'];
+        if (isset($this->links[$rel])) {
+            return $this->links[$rel]->getHref();
+        }
+
+        return '';
     }
 
 }

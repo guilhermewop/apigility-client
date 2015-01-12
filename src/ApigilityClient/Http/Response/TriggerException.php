@@ -1,8 +1,8 @@
 <?php
-namespace ApigilityClient\Response;
+namespace ApigilityClient\Http\Response;
 
-use Zend\Http\Response as HttpResponse,
-    Zend\Http\Client as HttpClient;
+use Zend\Http\Client as ZendHttpClient,
+    Zend\Http\Response as ZendHttpResponse;
 
 use ApigilityClient\Exception\RuntimeException;
 
@@ -17,11 +17,11 @@ class TriggerException
      * @param  string|null                                        $message
      * @throws ApigilityClient\Exception\RuntimeException
      */
-    public function __construct(HttpClient $client, HttpResponse $response, $message = null)
+    public function __construct(ZendHttpClient $client, ZendHttpResponse $response, $message = null)
     {
         $defaultMessage = 'The API response is not an expected response';
         $message        = (string) $message;
-        $message        = (empty($message)) ? $defaulMessage : $defaultMessage . PHP_EOL . $message;
+        $message        = (empty($message)) ? $defaultMessage : $defaultMessage . PHP_EOL . $message;
 
         throw new RuntimeException(sprintf(
             $message . ': ' . PHP_EOL .

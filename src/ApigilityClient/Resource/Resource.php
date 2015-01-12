@@ -1,8 +1,8 @@
 <?php
 namespace ApigilityClient\Resource;
 
-use Level3\Resource\Resource as Level3Resource;
-
+use Level3\Resource\Resource as Level3Resource,
+    Level3\Resource\Link as Level3Link;
 class Resource
 {
 
@@ -46,7 +46,10 @@ class Resource
 
     public function getLinks()
     {
-        return new Links($this->resource->getAllLinks());
+        $links = $this->resource->getAllLinks();
+        $links['self'] = new Level3Link($this->resource->getUri());
+
+        return new Links($links);
     }
 
     public function getContent($key = self::DEFAULT_KEY_EMBEDDED_CONTENT)

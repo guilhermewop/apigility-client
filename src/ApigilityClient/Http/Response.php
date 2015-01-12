@@ -1,7 +1,11 @@
 <?php
 namespace ApigilityClient\Http;
 
+use Zend\Http\Client as ZendHttpClient,
+    Zend\Http\Response as ZendHttpResponse;
+
 use ApigilityClient\Exception\RuntimeException,
+    ApigilityClient\Http\Response\TriggerException,
     ApigilityClient\Http\Response\Content\HalJson;
 
 final class Response
@@ -27,7 +31,7 @@ final class Response
     * @param Zend\Http\Client   $client
     * @param Zend\Http\Response $response
     */
-    public function __construct(HttpClient $client, HttpResponse $response)
+    public function __construct(ZendHttpClient $client, ZendHttpResponse $response)
     {
         $this->httpClient = $client;
         $this->httpResponse = $response;
@@ -36,9 +40,8 @@ final class Response
             $this->checkResponseStatus();
 
             $contentType = $this->httpResponse->getHeaders()->get('Content-Type')->getFieldValue();
-            list($mimeType, $charset) = explode(';', $contentType);
 
-            switch (trim($mimeType)) {
+            switch (trim($contentType)) {
                 case HalJson::CONTENT_TYPE :
                     $this->strategyContent = new HalJson($this->httpClient, $this->httpResponse);
                     break;

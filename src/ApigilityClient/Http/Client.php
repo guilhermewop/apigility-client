@@ -20,6 +20,10 @@ final class Client implements ClientInterface
      */
     private $zendHttpClient;
 
+    private $headers = array(
+        'Accept' => 'application/hal+json',
+    );
+
     public function __construct(ZendHttpClient $client = null)
     {
         $client = ($client instanceof ZendHttpClient) ? $client : new ZendHttpClient();
@@ -29,17 +33,7 @@ final class Client implements ClientInterface
 
     public function setZendHttpClient(ZendHttpClient $client)
     {
-        // x_forwarded_for
-        $xff = array($_SERVER['REMOTE_ADDR']);
-
-        if (! empty($_SERVER['HTTP_X_FORWARDED_FOR'])
-            && $_SERVER['HTTP_X_FORWARDED_FOR'] != $_SERVER['REMOTE_ADDR']) {
-            array_unshift($xff, $_SERVER['HTTP_X_FORWARDED_FOR']);
-        }
-
-        $client->getRequest()->getHeaders()->addHeaders(array(
-            'HTTP_X_FORWARDED_FOR' => implode(',', $xff),
-        ));
+        $client->getRequest()->getHeaders()->addHeaders($this->headers);
 
         $client->setOptions(array(
             'timeout' => self::TIMEOUT
@@ -58,13 +52,13 @@ final class Client implements ClientInterface
         return $this->zendHttpClient;
     }
 
-   /**
-    * Execute the request to api server
-    *
-    * @param String $path Eg: "/v1/endpoint"
-    * @param String $method HTTP Verb
-    * @param Array $params GET or POST params
-    */
+    /**
+     * Execute the request to api server
+     *
+     * @param String $path Eg: "/v1/endpoint"
+     * @param String $method HTTP Verb
+     * @param Array $params GET or POST params
+     */
     private function doRequest($path, $method = 'GET', array $params = array())
     {
         $host = $this->zendHttpClient->getUri()->getHost();

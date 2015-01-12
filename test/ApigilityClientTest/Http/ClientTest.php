@@ -3,7 +3,8 @@ namespace ApigilityClientTest\Http;
 
 use ApigilityClientTest\Framework\TestCase;
 
-use ApigilityClient\Http\Client as HttpClient;
+use ApigilityClient\Http\Client as HttpClient,
+    ApigilityClient\Http\Response;
 
 use Zend\Http\Client as ZendHttpClient;
 
@@ -24,6 +25,11 @@ class ClientTest extends TestCase
         $this->client = null;
     }
 
+    public function testGetZendHttpClient()
+    {
+        $this->assertInstanceOf('Zend\Http\Client', $this->client->getZendHttpClient());
+    }
+
     /**
      * @expectedException ApigilityClient\Exception\RuntimeException
      * @expectedExceptionMessage Function not implemented
@@ -31,6 +37,33 @@ class ClientTest extends TestCase
     public function testPostMethodNotImplementedThrowsAnException()
     {
         $this->client->post('/', array('foo' => 'bar'));
+    }
+
+    /**
+    * @expectedException ApigilityClient\Exception\RuntimeException
+    * @expectedExceptionMessage Function not implemented
+    */
+    public function testPutMethodNotImplementedThrowsAnException()
+    {
+        $this->client->put('/', array('foo' => 'bar'));
+    }
+
+    /**
+    * @expectedException ApigilityClient\Exception\RuntimeException
+    * @expectedExceptionMessage Function not implemented
+    */
+    public function testPatchMethodNotImplementedThrowsAnException()
+    {
+        $this->client->patch('/', array('foo' => 'bar'));
+    }
+
+    /**
+    * @expectedException ApigilityClient\Exception\RuntimeException
+    * @expectedExceptionMessage Function not implemented
+    */
+    public function testDeleteMethodNotImplementedThrowsAnException()
+    {
+        $this->client->delete('/');
     }
 
 }

@@ -11,8 +11,7 @@ use ApigilityClient\Resource\Pagination,
     ApigilityClient\Resource\Resource,
     ApigilityClient\Resource\Links;
 
-use Level3\Resource\Resource as Level3Resource,
-    Level3\Resource\Format\Reader\HAL\JsonReader as HalJson;
+use Level3\Resource\Format\Reader\HAL\JsonReader as HalJsonReader;
 
 class ResourceTest extends TestCase
 {
@@ -25,9 +24,9 @@ class ResourceTest extends TestCase
 
         $this->json = (string) trim(file_get_contents($file));
 
-        $halJson = new HalJson;
+        $halJsonReader = new HalJsonReader;
 
-        $this->resource = new Resource($halJson->execute($this->json));
+        $this->resource = new Resource($halJsonReader->execute($this->json));
     }
 
     protected function tearDown()

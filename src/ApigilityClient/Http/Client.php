@@ -77,8 +77,10 @@ final class Client implements ClientInterface
 
         $this->zendHttpClient->getUri()->setPath($path);
 
-        if ('GET' === $method && ! empty($params)) {
-            $this->zendHttpClient->setParameterGet($params);
+        if ('GET' === $method) {
+            if (! empty($params)) {
+                $this->zendHttpClient->setParameterGet($params);
+            }
         } else {
             throw new RuntimeException(sprintf(
                 'Method "%s" not allowed',

@@ -36,15 +36,6 @@ interface ClientInterface
     public function put($path, array $data);
 
     /**
-     * Send a DELETE request
-     *
-     * @param String $path
-     *
-     * @return Response
-     */
-    public function delete($path);
-
-    /**
      * Send a PATCH request
      *
      * @param String $path
@@ -53,4 +44,14 @@ interface ClientInterface
      * @return Response
      */
     public function patch($path, array $data);
+
+    /**
+     * Send a DELETE request
+     *
+     * @param String $path
+     *
+     * @return Response
+     */
+    public function delete($path);
+
 }

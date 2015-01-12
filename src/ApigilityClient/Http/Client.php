@@ -36,7 +36,7 @@ final class Client implements ClientInterface
         $client->getRequest()->getHeaders()->addHeaders($this->headers);
 
         $client->setOptions(array(
-            'timeout' => self::TIMEOUT
+            'timeout' => self::TIMEOUT,
         ));
 
         $this->zendHttpClient = $client;

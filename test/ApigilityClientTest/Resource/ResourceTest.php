@@ -51,15 +51,4 @@ class ResourceTest extends TestCase
         $this->assertInstanceOf('ApigilityClient\Resource\Links', $links);
     }
 
-    public function testGetContent()
-    {
-        $content = $this->resource->getContent('content');
-
-        $this->assertInternalType('array', $content);
-
-        foreach ($content as $key => $value) {
-            $this->assertInstanceOf('Level3\Resource\Resource', $value);
-        }
-    }
-
 }

@@ -10,8 +10,7 @@ return array(
             $config = $sm->get('config');
             $apiServerConfig = $config['api-server'];
 
-            $zendHttpClient = new \Zend\Http\Client;
-            $zendHttpClient->getUri()->setHost($apiServerConfig['host']);
+            $zendHttpClient = new \Zend\Http\Client($apiServerConfig['host']);
 
             $service = new Service\Endpoint;
             $service->setClient(new Http\Client($zendHttpClient));
@@ -26,5 +25,6 @@ return array(
     'invokables' => array(
     ),
     'shared' => array(
+        'apigility.client.endpoint' => false,
     ),
 );

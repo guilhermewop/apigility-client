@@ -1,0 +1,14 @@
+<?php
+return array(
+    'modules' => array(
+        'ApigilityClient',
+    ),
+    'module_listener_options' => array(
+        'config_glob_paths'    => array(
+        ),
+        'module_paths' => array(
+            'module',
+            'vendor',
+        ),
+    ),
+);

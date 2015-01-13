@@ -1,0 +1,49 @@
+{
+    "name": "guilhermewop/apigility-client",
+    "type": "library",
+    "description": "API Client for Restful APIs built with apigility",
+    "homepage": "https://github.com/guilhermewop/apigility-client",
+    "license": "MIT",
+    "keywords": [
+        "apigility",
+        "api",
+        "rest",
+        "client",
+        "zend framework 2",
+        "zend module"
+    ],
+    "authors": [
+        {
+            "name": "Guilherme W. O. Pereira",
+            "email": "guilhermewop@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "guilhermewop@gmail.com",
+        "source": "https://github.com/guilhermewop/apigility-client",
+        "issues": "https://github.com/guilhermewop/apigility-client/issues"
+    },
+    "config": {
+        "process-timeout": 5000
+    },
+    "require": {
+        "php": ">=5.4",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "zendframework/zendframework": ">=2.3,<3.0.0",
+        "level3/resource": "0.0.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.4.*",
+        "fabpot/php-cs-fixer": "0.4.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "ApigilityClient": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

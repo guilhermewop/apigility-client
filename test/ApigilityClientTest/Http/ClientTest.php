@@ -43,24 +43,6 @@ class ClientTest extends TestCase
     * @expectedException ApigilityClient\Exception\RuntimeException
     * @expectedExceptionMessage Function not implemented
     */
-    public function testPutMethodNotImplementedThrowsAnException()
-    {
-        $this->client->put('/', array('foo' => 'bar'));
-    }
-
-    /**
-    * @expectedException ApigilityClient\Exception\RuntimeException
-    * @expectedExceptionMessage Function not implemented
-    */
-    public function testPatchMethodNotImplementedThrowsAnException()
-    {
-        $this->client->patch('/', array('foo' => 'bar'));
-    }
-
-    /**
-    * @expectedException ApigilityClient\Exception\RuntimeException
-    * @expectedExceptionMessage Function not implemented
-    */
     public function testDeleteMethodNotImplementedThrowsAnException()
     {
         $this->client->delete('/');

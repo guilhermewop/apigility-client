@@ -83,12 +83,16 @@ class Endpoint implements EndpointInterface
         return $this->getClient()->get($this->getFullPath(), $params);
     }
 
-    public function insert()
+    public function update($path = null, array $params = array())
     {
-        throw new NotAvailableException('Feature not implemented');
+        if (! is_null($path)) {
+            $this->setPath($path);
+        }
+
+        return $this->getClient()->patch($this->getFullPath(), $params);
     }
 
-    public function update()
+    public function insert()
     {
         throw new NotAvailableException('Feature not implemented');
     }

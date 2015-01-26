@@ -21,7 +21,8 @@ final class Client implements ClientInterface
     private $zendHttpClient;
 
     private $headers = array(
-        'Accept' => 'application/hal+json',
+        'Accept'       => 'application/hal+json',
+        'Content-Type' => 'application/json',
     );
 
     public function __construct(ZendHttpClient $client = null)
@@ -75,6 +76,11 @@ final class Client implements ClientInterface
             if (! empty($params)) {
                 $this->zendHttpClient->setParameterGet($params);
             }
+        } else if ('POST' === $method || 'PUT' === $method || 'PATCH' === $method) {
+            if (! empty($params)) {
+                //$this->zendHttpClient->setParameterPost($params);
+                $this->zendHttpClient->setRawBody(json_encode($params));
+            }
         } else {
             throw new RuntimeException(sprintf(
                 'Method "%s" not allowed',
@@ -117,7 +123,7 @@ final class Client implements ClientInterface
      */
     public function put($path, array $data)
     {
-        throw new RuntimeException('Function not implemented');
+        return $this->doRequest($path, 'PUT', $data);
     }
 
     /**
@@ -133,7 +139,7 @@ final class Client implements ClientInterface
      */
     public function patch($path, array $data)
     {
-        throw new RuntimeException('Function not implemented');
+        return $this->doRequest($path, 'PATCH', $data);
     }
 
 }

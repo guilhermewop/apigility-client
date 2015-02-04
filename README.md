@@ -24,27 +24,4 @@ php composer.phar require guilhermewop/apigility-client:dev-master
 
 ## Goals
 
-* Endpoint/Resource
- * Version
- * Links (self, first, next, last, etc) (:heavy_check_mark:)
- * Pagination (page size, page count, total items) (:heavy_check_mark:)
- * Embedded (main content, children resources) (:heavy_check_mark:)
- * Formats  
-    * Hal+json (:heavy_check_mark:)
-     * Json
- * Requests  
-    * fetch
-    * insert
-    * update
-    * delete
-
-
-* Http Client
- * Authentication (Injecting a http client)
- * Validate headers (Content type request/response)
- * Methods  
-    * GET
-    * POST
-    * PUT
-    * PATCH
-    * DELETE
+Waiting [psr7](https://github.com/php-fig/fig-standards/blob/master/proposed/http-message-meta.md) be accepted to continue with the development

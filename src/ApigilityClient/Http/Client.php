@@ -5,7 +5,8 @@ use ApigilityClient\Exception\RuntimeException,
     ApigilityClient\Http\Response,
     ApigilityClient\Http\Client\ClientInterface;
 
-use Zend\Http\Client as ZendHttpClient;
+use Zend\Http\Client as ZendHttpClient,
+    Zend\Http\Client\Adapter\Curl;
 
 final class Client implements ClientInterface
 {
@@ -35,6 +36,8 @@ final class Client implements ClientInterface
     public function setZendHttpClient(ZendHttpClient $client)
     {
         $client->getRequest()->getHeaders()->addHeaders($this->headers);
+
+        $client->setAdapter(new Curl);
 
         $client->setOptions(array(
             'timeout' => self::TIMEOUT,

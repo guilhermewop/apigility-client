@@ -13,8 +13,8 @@ class PaginationTest extends TestCase
     {
         $data = array(
             'page_count'  => 1,
-            'page_size'   => 25,
-            'total_items' => 12,
+            'page_size'   => 5,
+            'total_items' => 15,
         );
 
         $this->pagination = new Pagination($data);
@@ -32,12 +32,12 @@ class PaginationTest extends TestCase
 
     public function testGetPageSize()
     {
-        $this->assertEquals(25, $this->pagination->getPageSize());
+        $this->assertEquals(5, $this->pagination->getPageSize());
     }
 
     public function testGetTotalItems()
     {
-        $this->assertEquals(12, $this->pagination->getTotalItems());
+        $this->assertEquals(15, $this->pagination->getTotalItems());
     }
 
 }

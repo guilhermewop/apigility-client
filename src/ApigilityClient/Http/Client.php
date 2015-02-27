@@ -6,7 +6,8 @@ use ApigilityClient\Exception\RuntimeException,
     ApigilityClient\Http\Client\ClientInterface;
 
 use Zend\Http\Client as ZendHttpClient,
-    Zend\Http\Client\Adapter\Curl;
+    Zend\Http\Client\Adapter\Curl,
+    Zend\Http\Exception\RuntimeException as ZendHttpRuntimeException;
 
 final class Client implements ClientInterface
 {
@@ -21,11 +22,6 @@ final class Client implements ClientInterface
      */
     private $zendHttpClient;
 
-    private $headers = array(
-        'Accept'       => 'application/hal+json',
-        'Content-Type' => 'application/json',
-    );
-
     public function __construct(ZendHttpClient $client = null)
     {
         $client = ($client instanceof ZendHttpClient) ? $client : new ZendHttpClient();
@@ -35,15 +31,35 @@ final class Client implements ClientInterface
 
     public function setZendHttpClient(ZendHttpClient $client)
     {
-        $client->getRequest()->getHeaders()->addHeaders($this->headers);
-
-        $client->setAdapter(new Curl);
+        $client->getRequest()->getHeaders()->addHeaders(array(
+            'Accept'       => 'application/hal+json',
+            'Content-Type' => 'application/json',
+        ));
 
         $client->setOptions(array(
             'timeout' => self::TIMEOUT,
         ));
 
+        $client->setAdapter(new Curl);
+
+        $host = $client->getUri()->getHost();
+
+        if (empty($host)) {
+            throw new ZendHttpRuntimeException(
+                'Host not defined.'
+            );
+        }
+
         $this->zendHttpClient = $client;
+    }
+
+    private function addHeaders(array $headers = array())
+    {
+        if (! empty($headers)) {
+            $this->zendHttpClient->getRequest()->getHeaders()->addHeaders($headers);
+        }
+
+        return $this;
     }
 
     /**
@@ -57,48 +73,23 @@ final class Client implements ClientInterface
     }
 
     /**
-     * Execute the request to api server
+     * Perform the request to api server
      *
-     * @param String $path Eg: "/v1/endpoint"
-     * @param String $method HTTP Verb
-     * @param Array $params GET or POST params
+     * @param String $path Example: "/v1/endpoint"
+     * @param String $method HTTP method (GET, POST, PUT, DELETE...)
+     * @param Array $params Query string or post params
+     * @param Array $headers GET or POST params
      */
-    private function doRequest($path, $method = 'GET', array $params = array())
+    private function doRequest($path)
     {
-        $host = $this->zendHttpClient->getUri()->getHost();
-
-        if (empty($host)) {
-            throw new RuntimeException(
-                'Host not defined.'
-            );
-        }
-
         $this->zendHttpClient->getUri()->setPath($path);
-
-        if ('GET' === $method) {
-            if (! empty($params)) {
-                $this->zendHttpClient->setParameterGet($params);
-            }
-        } else if ('POST' === $method || 'PUT' === $method || 'PATCH' === $method) {
-            if (! empty($params)) {
-                //$this->zendHttpClient->setParameterPost($params);
-                $this->zendHttpClient->setRawBody(json_encode($params));
-            }
-        } else {
-            throw new RuntimeException(sprintf(
-                'Method "%s" not allowed',
-                $method
-            ));
-        }
-
-        $this->zendHttpClient->setMethod($method);
 
         $zendHttpResponse = $this->zendHttpClient->send();
 
         try {
             $response = new Response($this->zendHttpClient, $zendHttpResponse);
             $content = $response->getContent();
-        } catch (\Zend\Http\Exception\RuntimeException $e) {
+        } catch (ZendHttpRuntimeException $e) {
             die($e->getMessage());
         }
 
@@ -108,41 +99,65 @@ final class Client implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function get($path, array $data = array())
+    public function get($path, array $data = array(), array $headers = array())
     {
-        return $this->doRequest($path, 'GET', $data);
+        $this->addHeaders($headers);
+
+        $this->zendHttpClient->setMethod('GET')
+                             ->setParameterGet($data);
+
+        return $this->doRequest($path);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function post($path, array $data)
+    public function post($path, array $data, array $headers = array())
     {
-        throw new RuntimeException('Function not implemented');
+        $this->addHeaders($headers);
+
+        $this->zendHttpClient->setMethod('POST')
+                             ->setRawBody(json_encode($data));
+
+        return $this->doRequest($path);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function put($path, array $data)
+    public function put($path, array $data, array $headers = array())
     {
-        return $this->doRequest($path, 'PUT', $data);
+        $this->addHeaders($headers);
+
+        $this->zendHttpClient->setMethod('PUT')
+                             ->setRawBody(json_encode($data));
+
+        return $this->doRequest($path);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function delete($path)
+    public function patch($path, array $data, array $headers = array())
     {
-        throw new RuntimeException('Function not implemented');
+        $this->addHeaders($headers);
+
+        $this->zendHttpClient->setMethod('PATCH')
+                             ->setRawBody(json_encode($data));
+
+        return $this->doRequest($path);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function patch($path, array $data)
+    public function delete($path, array $headers = array())
     {
-        return $this->doRequest($path, 'PATCH', $data);
+        $this->addHeaders($headers);
+
+        $this->zendHttpClient->setMethod('DELETE');
+
+        return $this->doRequest($path);
     }
 
 }

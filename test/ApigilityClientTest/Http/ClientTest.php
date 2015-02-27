@@ -15,7 +15,7 @@ class ClientTest extends TestCase
     protected function setUp()
     {
         $zendHttpClient = new ZendHttpClient;
-        $zendHttpClient->getUri()->setHost('api-server.local');
+        $zendHttpClient->getUri()->setHost('api.localhost');
 
         $this->client = new HttpClient($zendHttpClient);
     }
@@ -25,27 +25,21 @@ class ClientTest extends TestCase
         $this->client = null;
     }
 
+    /**
+     * @expectedException Zend\Http\Exception\RuntimeException
+     * @expectedExceptionMessage Host not defined.
+     */
+    public function testSetZendHttpClientThrowsAnException()
+    {
+        $this->client = new HttpClient();
+
+        $this->client->setZendHttpClient(new ZendHttpClient);
+    }
+
     public function testGetZendHttpClient()
     {
         $this->assertInstanceOf('Zend\Http\Client', $this->client->getZendHttpClient());
     }
 
-    /**
-     * @expectedException ApigilityClient\Exception\RuntimeException
-     * @expectedExceptionMessage Function not implemented
-     */
-    public function testPostMethodNotImplementedThrowsAnException()
-    {
-        $this->client->post('/', array('foo' => 'bar'));
-    }
-
-    /**
-    * @expectedException ApigilityClient\Exception\RuntimeException
-    * @expectedExceptionMessage Function not implemented
-    */
-    public function testDeleteMethodNotImplementedThrowsAnException()
-    {
-        $this->client->delete('/');
-    }
 
 }

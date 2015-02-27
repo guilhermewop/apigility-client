@@ -1,0 +1,68 @@
+{
+    "_links": {
+        "self": {
+            "href": "http://0.0.0.0:8888/endpoint?page=1"
+        },
+        "first": {
+            "href": "http://0.0.0.0:8888/endpoint"
+        },
+        "next": {
+            "href": "http://0.0.0.0:8888/endpoint?page=2"
+        },
+        "last": {
+            "href": "http://0.0.0.0:8888/endpoint?page=3"
+        }
+    },
+    "_embedded": {
+        "content": [
+            {
+                "id": "1",
+                "description": "Etiam aliquam sem ac velit feugiat elementum",
+                "_links": {
+                    "self": {
+                        "href": "http://0.0.0.0:8888/endpoint/1"
+                    }
+                }
+            },
+            {
+                "id": "2",
+                "description": "Nunc eu elit velit, nec vestibulum nibh",
+                "_links": {
+                    "self": {
+                        "href": "http://0.0.0.0:8888/endpoint/2"
+                    }
+                }
+            },
+            {
+                "id": "3",
+                "description": "Curabitur ultrices, diam non ullamcorper blandit, nunc lacus ornare nisi, egestas rutrum magna est id nunc",
+                "_links": {
+                    "self": {
+                        "href": "http://0.0.0.0:8888/endpoint/3"
+                    }
+                }
+            },
+            {
+                "id": "4",
+                "description": "Pellentesque imperdiet malesuada quam, et rhoncus eros auctor eu",
+                "_links": {
+                    "self": {
+                        "href": "http://0.0.0.0:8888/endpoint/4"
+                    }
+                }
+            },
+            {
+                "id": "5",
+                "description": "Nullam vehicula metus ac lacus rutrum nec fermentum urna congue",
+                "_links": {
+                    "self": {
+                        "href": "http://0.0.0.0:8888/endpoint/5"
+                    }
+                }
+            }
+        ]
+    },
+    "page_count": 1,
+    "page_size": 5,
+    "total_items": 15
+}

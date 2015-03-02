@@ -1,7 +1,7 @@
 <?php
 namespace ApigilityClient\Resource;
 
-use Level3\Resource\Link as Level3Links;
+use ApigilityClient\Exception\UnexpectedValueException;
 
 final class Links
 {
@@ -12,22 +12,36 @@ final class Links
     const LAST_PAGE    = 'last';
 
     /**
-     * @var Array of Level3\Resource\Link
+     * @var Array
      */
     private $links = array();
 
     public function __construct(array $links)
     {
-        $this->links = $links;
+        if (! empty($links)) foreach ($links as $key => $val) {
+            $this->links[$key] = $val->getHref();
+        }
     }
 
-    public function getPageLink($rel = self::CURRENT_PAGE)
+    public function getLink($rel = self::CURRENT_PAGE)
     {
         if (isset($this->links[$rel])) {
-            return $this->links[$rel]->getHref();
+            return $this->links[$rel];
         }
 
         return '';
+    }
+
+    public function __get($rel)
+    {
+        if (! isset($this->links[$rel])) {
+            throw new UnexpectedValueException(sprintf(
+                'Link "%s" não existe',
+                $rel
+            ));
+        }
+
+        return $this->links[$rel];
     }
 
 }

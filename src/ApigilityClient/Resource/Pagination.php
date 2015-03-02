@@ -15,9 +15,9 @@ final class Pagination
     public function __construct(array $data = null)
     {
         if (! empty($data)) {
-            $pageSize   = (int) $data[self::PAGE_SIZE];
-            $pageCount  = (int) $data[self::PAGE_COUNT];
-            $totalItems = (int) $data[self::TOTAL_ITEMS];
+            $pageSize   = (int) isset($data[self::PAGE_SIZE]) ? $data[self::PAGE_SIZE] : 0;
+            $pageCount  = (int) isset($data[self::PAGE_COUNT]) ? $data[self::PAGE_COUNT] : 0;
+            $totalItems = (int) isset($data[self::TOTAL_ITEMS]) ? $data[self::TOTAL_ITEMS] : 0;
 
             $this->setPageSize($pageSize)
                  ->setPageCount($pageCount)

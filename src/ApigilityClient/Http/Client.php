@@ -20,17 +20,22 @@ final class Client implements ClientInterface
     /**
      * @var Zend\Http\Client Instance
      */
-    private $zendHttpClient;
+    private $zendClient;
 
     public function __construct(ZendHttpClient $client = null)
     {
         $client = ($client instanceof ZendHttpClient) ? $client : new ZendHttpClient();
 
-        $this->setZendHttpClient($client);
+        $this->setZendClient($client);
     }
 
-    public function setZendHttpClient(ZendHttpClient $client)
+    public function setZendClient(ZendHttpClient $client)
     {
+        $client->getRequest()->getHeaders()->addHeaders(array(
+            'Accept'       => 'application/hal+json',
+            'Content-Type' => 'application/json',
+        ));
+
         $client->setOptions(array(
             'timeout' => self::TIMEOUT,
         ));
@@ -45,21 +50,7 @@ final class Client implements ClientInterface
             );
         }
 
-        $this->zendHttpClient = $client;
-
-        $this->addHeaders(array(
-            'Accept'       => 'application/hal+json',
-            'Content-Type' => 'application/json',
-        ));
-
-        return $this;
-    }
-
-    private function addHeaders(array $headers = array())
-    {
-        if (! empty($headers)) {
-            $this->zendHttpClient->getRequest()->getHeaders()->addHeaders($headers);
-        }
+        $this->zendClient = $client;
 
         return $this;
     }
@@ -69,27 +60,27 @@ final class Client implements ClientInterface
      *
      * @return Zend\Http\Client
      */
-    public function getZendHttpClient()
+    public function getZendClient()
     {
-        return $this->zendHttpClient;
+        return $this->zendClient;
     }
 
     /**
      * Perform the request to api server
      *
      * @param String $path Example: "/v1/endpoint"
-     * @param String $method HTTP method (GET, POST, PUT, DELETE...)
-     * @param Array $params Query string or post params
-     * @param Array $headers GET or POST params
+     * @param Array $headers
      */
-    private function doRequest($path)
+    private function doRequest($path, $headers = array())
     {
-        $this->zendHttpClient->getUri()->setPath($path);
+        $this->zendClient->getUri()->setPath($path);
 
-        $zendHttpResponse = $this->zendHttpClient->send();
+        $this->zendClient->getRequest()->getHeaders()->addHeaders($headers);
+
+        $zendHttpResponse = $this->zendClient->send();
 
         try {
-            $response = new Response($this->zendHttpClient, $zendHttpResponse);
+            $response = new Response($this->zendClient, $zendHttpResponse);
             $content = $response->getContent();
         } catch (ZendHttpRuntimeException $e) {
             die($e->getMessage());
@@ -103,12 +94,10 @@ final class Client implements ClientInterface
      */
     public function get($path, array $data = array(), array $headers = array())
     {
-        $this->addHeaders($headers);
+        $this->zendClient->setMethod('GET')
+                         ->setParameterGet($data);
 
-        $this->zendHttpClient->setMethod('GET')
-                             ->setParameterGet($data);
-
-        return $this->doRequest($path);
+        return $this->doRequest($path, $headers);
     }
 
     /**
@@ -116,12 +105,10 @@ final class Client implements ClientInterface
      */
     public function post($path, array $data, array $headers = array())
     {
-        $this->addHeaders($headers);
+        $this->zendClient->setMethod('POST')
+                         ->setRawBody(json_encode($data));
 
-        $this->zendHttpClient->setMethod('POST')
-                             ->setRawBody(json_encode($data));
-
-        return $this->doRequest($path);
+        return $this->doRequest($path, $headers);
     }
 
     /**
@@ -129,12 +116,10 @@ final class Client implements ClientInterface
      */
     public function put($path, array $data, array $headers = array())
     {
-        $this->addHeaders($headers);
+        $this->zendClient->setMethod('PUT')
+                         ->setRawBody(json_encode($data));
 
-        $this->zendHttpClient->setMethod('PUT')
-                             ->setRawBody(json_encode($data));
-
-        return $this->doRequest($path);
+        return $this->doRequest($path, $headers);
     }
 
     /**
@@ -142,12 +127,10 @@ final class Client implements ClientInterface
      */
     public function patch($path, array $data, array $headers = array())
     {
-        $this->addHeaders($headers);
+        $this->zendClient->setMethod('PATCH')
+                         ->setRawBody(json_encode($data));
 
-        $this->zendHttpClient->setMethod('PATCH')
-                             ->setRawBody(json_encode($data));
-
-        return $this->doRequest($path);
+        return $this->doRequest($path, $headers);
     }
 
     /**
@@ -155,11 +138,9 @@ final class Client implements ClientInterface
      */
     public function delete($path, array $headers = array())
     {
-        $this->addHeaders($headers);
+        $this->zendClient->setMethod('DELETE');
 
-        $this->zendHttpClient->setMethod('DELETE');
-
-        return $this->doRequest($path);
+        return $this->doRequest($path, $headers);
     }
 
 }

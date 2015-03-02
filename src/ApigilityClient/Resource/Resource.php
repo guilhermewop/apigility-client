@@ -86,4 +86,9 @@ class Resource
         return $this;
     }
 
+    public function getData()
+    {
+        return $this->data;
+    }
+
 }

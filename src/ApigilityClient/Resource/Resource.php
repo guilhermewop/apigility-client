@@ -11,71 +11,79 @@ use ApigilityClient\Exception\RuntimeException,
 
 class Resource
 {
+    private $uri = '';
 
-    private $resource;
     private $pagination;
 
-    private $collection = false;
+    private $links;
 
-    public function __construct(Level3Resource $resource = null)
+    private $data = array();
+
+    public function __construct(Level3Resource $resource)
     {
-        if (! empty($resource)) {
-            $this->setResource($resource);
-        }
+        $this->config($resource);
     }
 
-    public function setResource(Level3Resource $input)
+    private function config(Level3Resource $resource)
     {
-        $this->resource = $input;
+        $this->setUri($resource->getUri());
+        $this->setLinks($resource->getAllLinks());
+        $this->setPagination($resource->getData());
+        $this->setData($resource);
+    }
 
-        $data = $this->resource->getData();
-
-        if (isset($data[Pagination::PAGE_SIZE])
-            && isset($data[Pagination::PAGE_COUNT])
-            && isset($data[Pagination::TOTAL_ITEMS])
-        ) {
-            $this->collection = true;
-        }
-
-        if ($this->collection) {
-            $this->setPagination(new Pagination($data));
-        }
+    private function setUri($input)
+    {
+        $this->uri = (string) $input;
 
         return $this;
     }
 
-    public function getResource()
+    private function setLinks(array $links)
     {
-        return $this->resource;
+        $links['self'] = new Level3Link($this->uri);
+
+        $this->links = new Links($links);
+
+        return $this;
     }
 
-    public function isCollection()
+    public function getLinks()
     {
-        return ($this->collection);
+        return $this->links;
     }
 
-    private function setPagination(Pagination $input)
+    private function setPagination(array $input)
     {
-        $this->pagination = $input;
+        $this->pagination = new Pagination($input);
 
         return $this;
     }
 
     public function getPagination()
     {
-        if (! $this->collection) {
-            throw new RuntimeException('Trying getting pagination data from not a collection');
-        }
-
         return $this->pagination;
     }
 
-    public function getLinks()
+    public function isCollection()
     {
-        $links = $this->resource->getAllLinks();
-        $links['self'] = new Level3Link($this->resource->getUri());
+        return (bool) ($this->pagination->getPageSize() > 0);
+    }
 
-        return new Links($links);
+    private function setData(Level3Resource $input)
+    {
+        if ($this->isCollection()) {
+            $resources = $input->getAllResources();
+            foreach ($resources as $keyContent) {
+                foreach ($keyContent as $resource) {
+                    $this->data[] = $resource->getData();
+                }
+            }
+        } else {
+            $this->data[] = $input->getData();
+        }
+
+        return $this;
     }
 
 }

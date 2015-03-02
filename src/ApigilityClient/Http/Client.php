@@ -31,11 +31,6 @@ final class Client implements ClientInterface
 
     public function setZendHttpClient(ZendHttpClient $client)
     {
-        $client->getRequest()->getHeaders()->addHeaders(array(
-            'Accept'       => 'application/hal+json',
-            'Content-Type' => 'application/json',
-        ));
-
         $client->setOptions(array(
             'timeout' => self::TIMEOUT,
         ));
@@ -51,6 +46,13 @@ final class Client implements ClientInterface
         }
 
         $this->zendHttpClient = $client;
+
+        $this->addHeaders(array(
+            'Accept'       => 'application/hal+json',
+            'Content-Type' => 'application/json',
+        ));
+
+        return $this;
     }
 
     private function addHeaders(array $headers = array())

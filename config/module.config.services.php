@@ -3,28 +3,19 @@ namespace ApigilityClient;
 
 return array(
     'aliases' => array(
-        'ApigilityClient\Service\Endpoint' => 'apigility.client.endpoint',
+        'ApigilityClient\Http\Client' => 'apigility.client',
     ),
     'factories' => array(
-        'apigility.client.endpoint' => function ($sm) {
+        'apigility.client' => function ($sm) {
             $config = $sm->get('config');
-            $apiServerConfig = $config['api-server'];
+            $apiConfig = $config['api-server'];
 
-            $zendHttpClient = new \Zend\Http\Client($apiServerConfig['host']);
-
-            $service = new Service\Endpoint;
-            $service->setClient(new Http\Client($zendHttpClient));
-
-            if (isset($apiServerConfig['default_version'])) {
-                $service->setVersion($apiServerConfig['default_version']);
-            }
-
-            return $service;
+            return new Http\Client(new \Zend\Http\Client($apiConfig['host']));
         }
     ),
     'invokables' => array(
     ),
     'shared' => array(
-        'apigility.client.endpoint' => false,
+        'apigility.client' => false,
     ),
 );

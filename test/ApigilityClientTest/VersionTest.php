@@ -9,6 +9,6 @@ class VersionTest extends TestCase
 {
     public function testWillRetriveVersionNumber()
     {
-        $this->assertEquals('0.1.0-rc1', Version::getVersion());
+        $this->assertEquals('0.2.0', Version::getVersion());
     }
 }

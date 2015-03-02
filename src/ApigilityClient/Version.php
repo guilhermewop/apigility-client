@@ -7,7 +7,7 @@ class Version
     /**
      * @var String
      */
-    const VERSION = '0.2.0-rc1';
+    const VERSION = '0.2.0';
 
     /**
      * Get current version

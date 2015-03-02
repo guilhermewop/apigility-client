@@ -30,10 +30,10 @@ class LinksTest extends TestCase
 
     public function testGetPageLink()
     {
-        $this->assertEquals('http://api.localhost/v1/endpoint', $this->links->getPageLink(Links::CURRENT_PAGE));
-        $this->assertEquals('http://api.localhost/v1/endpoint', $this->links->getPageLink(Links::FIRST_PAGE));
-        $this->assertEquals('http://api.localhost/v1/endpoint?page=2', $this->links->getPageLink(Links::NEXT_PAGE));
-        $this->assertEquals('http://api.localhost/v1/endpoint?page=3', $this->links->getPageLink(Links::LAST_PAGE));
+        $this->assertEquals('http://api.localhost/v1/endpoint', $this->links->getLink(Links::CURRENT_PAGE));
+        $this->assertEquals('http://api.localhost/v1/endpoint', $this->links->getLink(Links::FIRST_PAGE));
+        $this->assertEquals('http://api.localhost/v1/endpoint?page=2', $this->links->getLink(Links::NEXT_PAGE));
+        $this->assertEquals('http://api.localhost/v1/endpoint?page=3', $this->links->getLink(Links::LAST_PAGE));
     }
 
 }

@@ -34,11 +34,6 @@ class ResourceTest extends TestCase
         $this->pagination = null;
     }
 
-    public function testGetResource()
-    {
-        $this->assertInstanceOf('Level3\Resource\Resource', $this->resource->getResource());
-    }
-
     public function testGetPagination()
     {
         $this->assertInstanceOf('ApigilityClient\Resource\Pagination', $this->resource->getPagination());
@@ -46,9 +41,7 @@ class ResourceTest extends TestCase
 
     public function testGetLinks()
     {
-        $links = $this->resource->getLinks();
-
-        $this->assertInstanceOf('ApigilityClient\Resource\Links', $links);
+        $this->assertInstanceOf('ApigilityClient\Resource\Links', $this->resource->getLinks());
     }
 
 }

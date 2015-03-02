@@ -33,12 +33,12 @@ class ClientTest extends TestCase
     {
         $this->client = new HttpClient();
 
-        $this->client->setZendHttpClient(new ZendHttpClient);
+        $this->client->setZendClient(new ZendHttpClient);
     }
 
     public function testGetZendHttpClient()
     {
-        $this->assertInstanceOf('Zend\Http\Client', $this->client->getZendHttpClient());
+        $this->assertInstanceOf('Zend\Http\Client', $this->client->getZendClient());
     }
 
 

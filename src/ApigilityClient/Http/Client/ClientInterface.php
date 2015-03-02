@@ -1,8 +1,6 @@
 <?php
 namespace ApigilityClient\Http\Client;
 
-use ApigilityClient\Http\Response;
-
 interface ClientInterface
 {
     /**
@@ -13,7 +11,7 @@ interface ClientInterface
      *
      * @return Response
      */
-    public function get($path, array $data = array());
+    public function get($path, array $data = array(), array $headers = array());
 
     /**
      * Send a POST request
@@ -23,7 +21,7 @@ interface ClientInterface
      *
      * @return Response
      */
-    public function post($path, array $data);
+    public function post($path, array $data, array $headers = array());
 
     /**
      * Send a PUT request
@@ -33,7 +31,7 @@ interface ClientInterface
      *
      * @return Response
      */
-    public function put($path, array $data);
+    public function put($path, array $data, array $headers = array());
 
     /**
      * Send a PATCH request
@@ -43,7 +41,7 @@ interface ClientInterface
      *
      * @return Response
      */
-    public function patch($path, array $data);
+    public function patch($path, array $data, array $headers = array());
 
     /**
      * Send a DELETE request
@@ -52,6 +50,6 @@ interface ClientInterface
      *
      * @return Response
      */
-    public function delete($path);
+    public function delete($path, array $headers = array());
 
 }

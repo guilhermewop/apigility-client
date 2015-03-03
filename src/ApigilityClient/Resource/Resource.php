@@ -39,6 +39,11 @@ class Resource
         return $this;
     }
 
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
     private function setLinks(array $links)
     {
         $links['self'] = new Level3Link($this->uri);

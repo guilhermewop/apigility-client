@@ -6,7 +6,7 @@ use Zend\Http\Response as HttpResponse,
 
 use ApiClient\Core\Response\TriggerException;
 
-final class Empty extends AbstractContent
+final class EmptyContent extends AbstractContent
 {
     const CONTENT_TYPE = 'text/html';
 

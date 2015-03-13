@@ -7,7 +7,7 @@ use Zend\Http\Client as ZendHttpClient,
 use ApigilityClient\Exception\RuntimeException,
     ApigilityClient\Http\Response\TriggerException,
     ApigilityClient\Http\Response\Content\HalJson,
-    ApigilityClient\Http\Response\Content\Empty;
+    ApigilityClient\Http\Response\Content\EmptyContent;
 
 final class Response
 {
@@ -40,8 +40,8 @@ final class Response
         try {
             $this->checkResponseStatus();
 
-            if (204 == $this->httpClient->getStatusCode()) {
-                $this->strategyContent = new Empty($this->httpClient, $this->httpResponse);
+            if (204 == $this->httpResponse->getStatusCode()) {
+                $this->strategyContent = new EmptyContent($this->httpClient, $this->httpResponse);
             } else {
                 $contentType = $this->httpResponse->getHeaders()->get('Content-Type')->getFieldValue();
 

@@ -6,7 +6,8 @@ use Zend\Http\Client as ZendHttpClient,
 
 use ApigilityClient\Exception\RuntimeException,
     ApigilityClient\Http\Response\TriggerException,
-    ApigilityClient\Http\Response\Content\HalJson;
+    ApigilityClient\Http\Response\Content\HalJson,
+    ApigilityClient\Http\Response\Content\EmptyContent;
 
 final class Response
 {
@@ -39,21 +40,26 @@ final class Response
         try {
             $this->checkResponseStatus();
 
-            $contentType = $this->httpResponse->getHeaders()->get('Content-Type')->getFieldValue();
+            if (204 == $this->httpResponse->getStatusCode()) {
+                $this->strategyContent = new EmptyContent($this->httpClient, $this->httpResponse);
+            } else {
+                $contentType = $this->httpResponse->getHeaders()->get('Content-Type')->getFieldValue();
 
-            switch (trim($contentType)) {
-                case HalJson::CONTENT_TYPE :
-                    $this->strategyContent = new HalJson($this->httpClient, $this->httpResponse);
-                    break;
+                switch (trim($contentType)) {
+                    case HalJson::CONTENT_TYPE :
+                        $this->strategyContent = new HalJson($this->httpClient, $this->httpResponse);
+                        break;
 
-                default :
-                    $errorMessage = sprintf(
-                        'The apigility server returned a mime type ("%s") that cannot be parsed by apigility client',
-                        $mimeType
-                    );
+                    default :
+                        $errorMessage = sprintf(
+                            'The apigility server returned a mime type ("%s") that cannot be parsed by apigility client',
+                            $mimeType
+                        );
 
-                return new TriggerException($this->httpClient, $this->httpResponse, $errorMessage);
+                    return new TriggerException($this->httpClient, $this->httpResponse, $errorMessage);
+                }
             }
+
         } catch (RuntimeException $e) {
             die($e->getMessage());
         }

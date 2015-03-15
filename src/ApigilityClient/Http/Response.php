@@ -61,7 +61,7 @@ final class Response
             }
 
         } catch (RuntimeException $e) {
-            die($e->getMessage());
+	   throw $e;
         }
     }
 

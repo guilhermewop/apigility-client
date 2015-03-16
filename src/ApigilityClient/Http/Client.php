@@ -83,7 +83,7 @@ final class Client implements ClientInterface
             $response = new Response($this->zendClient, $zendHttpResponse);
             $content = $response->getContent();
         } catch (ZendHttpRuntimeException $e) {
-            die($e->getMessage());
+	    throw $e;
         }
 
         return $content;

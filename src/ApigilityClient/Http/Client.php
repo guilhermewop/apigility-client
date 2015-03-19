@@ -37,7 +37,8 @@ final class Client implements ClientInterface
         ));
 
         $client->setOptions(array(
-            'timeout' => self::TIMEOUT,
+            'timeout'       => self::TIMEOUT,
+            'sslverifypeer' => false,
         ));
 
         $client->setAdapter(new Curl);

@@ -22,6 +22,25 @@ php composer.phar require guilhermewop/apigility-client:dev-master
 
 [Package information on Packagist](https://packagist.org/packages/guilhermewop/apigility-client)
 
+### Configuration
+Put [Zend\Http\Client options](http://framework.zend.com/manual/current/en/modules/zend.http.client.html#configuration) into your **module.config.php** file:  
+
+```php
+'http_client' => array(
+    'uri' => 'https://localhost:8888',
+    'options' => array(
+        'timeout'       => 60,
+        'sslverifypeer' => false,
+        'keepalive'     => true,
+        'adapter'       => 'Zend\Http\Client\Adapter\Socket',
+    ),
+    'headers' => array(
+        'Accept'       => 'application/hal+json',
+        'Content-Type' => 'application/json',
+    ),
+)
+```
+
 ## Goals
 
 Waiting [psr7](https://github.com/php-fig/fig-standards/blob/master/proposed/http-message-meta.md) be accepted to continue with the development

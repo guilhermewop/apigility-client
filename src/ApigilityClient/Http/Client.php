@@ -31,18 +31,6 @@ final class Client implements ClientInterface
 
     public function setZendClient(ZendHttpClient $client)
     {
-        $client->getRequest()->getHeaders()->addHeaders(array(
-            'Accept'       => 'application/hal+json',
-            'Content-Type' => 'application/json',
-        ));
-
-        $client->setOptions(array(
-            'timeout'       => self::TIMEOUT,
-            'sslverifypeer' => false,
-        ));
-
-        $client->setAdapter(new Curl);
-
         $host = $client->getUri()->getHost();
 
         if (empty($host)) {

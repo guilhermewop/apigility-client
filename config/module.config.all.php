@@ -11,5 +11,5 @@ return array(
     // view helpers
     'view_helpers'    => include 'module.config.viewhelper.php',
     // apigility server
-    'api-server'      => include 'module.config.api-server.php',
+    'http_client'     => include 'module.config.httpclient.php',
 );

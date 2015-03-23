@@ -8,9 +8,12 @@ return array(
     'factories' => array(
         'apigility.client' => function ($sm) {
             $config = $sm->get('config');
-            $apiConfig = $config['api-server'];
+            $clientConfig = $config['http_client'];
 
-            return new Http\Client(new \Zend\Http\Client($apiConfig['host']));
+            $client = new \Zend\Http\Client($clientConfig['uri'], $clientConfig['options']);
+            $client->getRequest()->getHeaders()->addHeaders($clientConfig['headers']);
+
+            return new Http\Client($client);
         }
     ),
     'invokables' => array(

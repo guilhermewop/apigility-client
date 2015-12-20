@@ -53,7 +53,7 @@ final class Response
                     default :
                         $errorMessage = sprintf(
                             'The apigility server returned a mime type ("%s") that cannot be parsed by apigility client',
-                            $mimeType
+                            $contentType
                         );
 
                     return new TriggerException($this->httpClient, $this->httpResponse, $errorMessage);
